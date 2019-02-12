@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import './style.css';
 import TodoItem from './TodoItem';
-import Test from "./Test"
+
 class TodoList extends Component{
 	constructor(props){
 		super(props);
@@ -19,6 +19,7 @@ class TodoList extends Component{
 									id="insertArea"
 									onChange={this.handleInputChange.bind(this)}
 									className='input'
+									ref={(input)=>{this.input = input}}
 					/>
 					<button onClick={this.handleBtnClick.bind(this)}> submit </button>
 				</div>
@@ -41,14 +42,15 @@ class TodoList extends Component{
 						})
 					}
 				</ul>
-				<Test content={this.state.inputValue}/>
+				
 			</Fragment>	
 
 			)
 	}
 	handleInputChange(e){
+		const value = this.input.value;
 		this.setState({
-			inputValue: e.target.value
+			inputValue:value
 		})
 	}
 	handleBtnClick(){
